@@ -1,0 +1,86 @@
+.stock-table .stock-name {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stock-table .stock-info {
+  font-size: 0.5rem;
+  color: #6c757d;
+}
+
+.stock-table .stock-info span {
+  margin-right: 0.5rem;
+}
+
+.stock-table .rank {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 5px;
+  justify-content: center;
+  background-color: #bfbfbf;
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.stock-table td {
+  vertical-align: middle;
+  border-top: none;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.stock-table th {
+  border-top: none;
+  border-bottom: none;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.stock-table table {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+
+.stock-table caption {
+  caption-side: top;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  background-color: #343a40;
+  padding-left: 1.5rem;
+}
+
+.stock-table caption span img {
+  vertical-align: bottom;
+  margin-right: 0.5rem;
+}
+
+.stock-table .sector {
+  background-color: white;
+  padding: 0.1rem 0.3rem;
+  border-radius: 5px;
+}
+
+.stock-table td:nth-child(2),
+.stock-table td:nth-child(3) {
+  font-size: 1rem;
+}
+
+.stock-table td:nth-child(1),
+.stock-table th:nth-child(1) {
+  padding-left: 1.5rem;
+}
+
+.stock-table td:nth-child(3),
+.stock-table th:nth-child(3) {
+  padding-right: 1.5rem;
+}
+
+.stock-table td:nth-child(2),
+.stock-table td:nth-child(3),
+.stock-table th:nth-child(2),
+.stock-table th:nth-child(3) {
+  text-align: right;
+}

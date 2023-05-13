@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block detail %}active{% endblock %}
+{% block main %}
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">您想找...？</h1>
+  </div>
+
+  <!-- 搜索栏 -->
+  <form method="get">
+    <div class="form-group">
+      <input type="text" class="form-control" id="search_input" name="target" placeholder="股票名称或代码">
+      <small id="SearchHelp" class="form-text text-muted">如：平安银行、000001 等</small>
+    </div>
+    <button type="submit" class="btn btn-primary btn-outline-secondary">搜索</button>
+  </form>
+{% endblock %}

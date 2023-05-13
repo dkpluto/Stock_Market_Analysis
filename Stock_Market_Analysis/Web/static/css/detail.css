@@ -1,0 +1,63 @@
+h1 {
+  font-size: 1.5rem;
+  padding-left: 0.8rem;
+}
+
+.stock-info {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  border-collapse: separate;
+  padding-bottom: 1rem;
+  font-family: 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.stock-info b {
+  font-size: 1.5rem;
+}
+
+#chevron-up {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: red;
+}
+
+#chevron-down {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: green;
+}
+
+.stock-info th {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px;
+  text-align: left;
+}
+
+.stock-info td {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px;
+}
+
+/* adjust the font size according to the content */
+.stock-info th span {
+  font-size: 18px;
+}
+
+.stock-info th span:nth-child(1) {
+  font-size: 1.8rem;
+}
+
+.stock-info th span:nth-child(2) {
+  font-size: 1.4rem;
+  padding-left: 0.5rem;
+}
+
+.stock-info a {
+  color: #0070c9;
+  text-decoration: none;
+}
+.stock-info a:hover {
+  text-decoration: underline;
+}

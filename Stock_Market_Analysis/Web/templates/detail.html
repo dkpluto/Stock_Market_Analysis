@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+{% block css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css\detail.css' %}">
+{% endblock %}
+{% block detail %}active{% endblock %}
+{% block main %}
+  {% csrf_token %}
+  <!--股票信息面板-->
+  <table class="stock-info">
+    <thead>
+      <tr>
+        <th colspan="9" class="text-left">
+          <span>{{ stock_spot.name }}</span>
+          <span>{{ stock_spot.code }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2" colspan="2">
+          <b>最新价：</b>
+          <span id="latest_price" style="font-size: 1.5rem;">{{ stock_spot.latest_price }}</span>
+          <i id="chevron-up" data-feather="chevron-up"></i>
+          <i id="chevron-down" data-feather="chevron-down"></i>
+        </td>
+        <td>
+          涨跌幅：<span id="change_rate">{{ stock_spot.change_rate }}%</span>
+        </td>
+        <td>今开：{{ stock_spot.today_open }}</td>
+        <td>最高：{{ stock_spot.highest }}</td>
+        <td>换手：{{ stock_spot.turnover_ratio }}%</td>
+        <td>
+          成交量：<span id="volume">{{ stock_spot.volume }}</span>
+        </td>
+        <td>市盈率：{{ stock_spot.price_earnings }}</td>
+        <td>
+          总市值：<span id="total_value">{{ stock_spot.total_value }}</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          涨跌额：<span id="change_amount">{{ stock_spot.change_amount }}</span>
+        </td>
+        <td>昨收：{{ stock_spot.prev_close }}</td>
+        <td>最低：{{ stock_spot.lowest }}</td>
+        <td>量比：{{ stock_spot.volume_ratio }}</td>
+        <td>
+          成交额：<span id="turnover">{{ stock_spot.turnover }}</span>
+        </td>
+        <td>市净率：{{ stock_spot.price_book }}</td>
+        <td>
+          流通市值：<span id="circulation_value">{{ stock_spot.circulation_value }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--百度股市通-股评-投票-->
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 id="titledom">舆情概览</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2"></div>
+    </div>
+  </div>
+  <b style="font-size:20px;margin-left:1%;margin-bottom:20px;">百度股市通-涨跌情绪概率</b>
+  <div class="row" style="margin-top:20px;margin-bottom:40px;">
+    <div class="col-md-1">
+      <h5 style="text-align:center;">看涨</h5>
+    </div>
+    <div class="col-md-10">
+      <div class="progress" style="height:30px; font-size:20px;">
+        <div id="up_prog"
+             class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
+             role="progressbar"
+             style="width: 0%">0%</div>
+        <div id="down_prog"
+             class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+             role="progressbar"
+             style="width: 0%">0%</div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <h5 style="text-align:center;">看跌</h5>
+    </div>
+  </div>
+
+  <!--K线图-->
+  <div class="row">
+    <div id="kchart" style="width: 100%; height: 70vh" code="{{ code }}" abbr="{{ abbr }}"></div>
+  </div>
+
+  <!--个股新闻-->
+  <table class="stock-info">
+    <thead>
+      <tr>
+        <th colspan="2" class="text-left" style="font-size: 20px">个股新闻</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in stock_news %}
+        <tr>
+          <td>{{ data.source }}</td>
+          <td>
+            <a href={{ data.link }}>{{ data.title }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+{% block js %}
+  <script src="https://cdn.staticfile.org/echarts/4.2.0-rc.2/echarts.min.js"></script>
+  {% load static %}
+  <script src="{% static 'js\detail.js' %}"></script>
+{% endblock %}

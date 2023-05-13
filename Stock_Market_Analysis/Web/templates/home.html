@@ -1,0 +1,122 @@
+{% extends 'layout.html' %}
+{% block css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block home %}active{% endblock %}
+{% block main %}
+  {% csrf_token %}
+  <div class="row">
+    <!--东方财富-个股人气榜-->
+    <div class="col-md-4 stock-table">
+      <table class="table table-hover">
+        <caption><span>
+          <img src="static\ico\eastmoney.png" width="30" height="30" alt="eastmoney">
+        </span>东方财富-个股人气榜</caption>
+        <thead>
+          <tr>
+            <th scope="col">代码/名称</th>
+            <th scope="col">最新价</th>
+            <th scope="col">涨跌幅</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in em_list %}
+            <tr onclick="window.location.href='{% url 'detail' %}?target={{ data.code|slice:"-6:" }}'">
+              <td>
+                <div class="stock-name">
+                  <span class="rank">{{ data.id }}</span> {{ data.name }}
+                </div>
+                <div class="stock-info">
+                  <span class="sector">{{ data.code|slice:"2" }}</span> <span>{{ data.code|slice:"-6:" }}</span>
+                </div>
+              </td>
+              <td>{{ data.price }}</td>
+              <td>
+                <span class="set_color">{{ data.state }}</span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!--百度股市通-热搜股票-->
+    <div class="col-md-4 stock-table">
+      <table class="table table-hover">
+        <caption><span>
+          <img src="static\ico\baidu.png" width="30" height="30" alt="baidu">
+        </span>百度股市通-热搜股票</caption>
+        <thead>
+          <tr>
+            <th scope="col">代码/名称</th>
+            <th scope="col">最新价</th>
+            <th scope="col">涨跌幅</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in baidu_list %}
+            <tr onclick="window.location.href='{% url 'detail' %}?target={{ data.code }}'">
+              <td>
+                <div class="stock-name">
+                  <span class="rank">{{ data.id }}</span> {{ data.name }}
+                </div>
+                <div class="stock-info">
+                  <span class="sector">{{ data.abbr }}</span> <span>{{ data.code }}</span>
+                </div>
+              </td>
+              <td>{{ data.price }}</td>
+              <td>
+                <span class="set_color">{{ data.state }}</span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!--雪球-沪深股市-热度排行榜-讨论排行榜-->
+    <div class="col-md-4 stock-table">
+      <table class="table table-hover">
+        <caption><span>
+          <img src="static\ico\xq.png" width="30" height="30" alt="xq">
+        </span>雪球-讨论排行榜</caption>
+        <thead>
+          <tr>
+            <th scope="col">代码/名称</th>
+            <th scope="col">最新价</th>
+            <th scope="col">关注</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in xq_tweet %}
+            <tr onclick="window.location.href='{% url 'detail' %}?target={{ data.code|slice:"-6:" }}'">
+              <td>
+                <div class="stock-name">
+                  <span class="rank">{{ data.id }}</span> {{ data.name }}
+                </div>
+                <div class="stock-info">
+                  <span class="sector">{{ data.code|slice:"2" }}</span> <span>{{ data.code|slice:"-6:" }}</span>
+                </div>
+              </td>
+              <td>{{ data.price }}</td>
+              <td>
+                <span>{{ data.follow }}</span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!--微博舆情报告-->
+  <div class="text-center">
+    <div id="heatmap" style="width: 100%; height: 110vh;  vertical-align: middle;"></div>
+  </div>
+{% endblock %}
+{% block js %}
+  <script src="https://cdn.staticfile.org/echarts/4.2.0-rc.2/echarts.min.js"></script>
+  {% load static %}
+  <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block detail %}active{% endblock %}
+{% block main %}
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h2 class="h2" id="title404">404：页面没有找到 😭😭</h2>
+  </div>
+  <!-- 警示框 -->
+  <div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">您想找的 “{{ target }}” 不存在</h4>
+    <p>尝试输入股票代码（如：000001），或者股票中文名（如：平安银行、ST国华）</p>
+  </div>
+  <!-- 搜索框 -->
+  <form method="get">
+    <div class="form-group">
+      <input type="text" class="form-control" id="search_input" name="target" placeholder="股票名称或代码">
+      <small id="SearchHelp" class="form-text text-muted">如：平安银行、000001 等</small>
+    </div>
+    <button type="submit" class="btn btn-primary btn-outline-secondary">搜索</button>
+  </form>
+{% endblock %}

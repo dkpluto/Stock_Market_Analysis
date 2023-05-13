@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block text %}active{% endblock %}
+{% block main %}
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">文本分析</h1>
+  </div>
+
+  <!-- 搜索栏 -->
+  {% csrf_token %}
+  <div class="form-group">
+    <textarea id="text-input" class="form-control" rows="8" name="textdata" placeholder="请填入待分析的文本，如股评文章等"></textarea>
+  </div>
+  <button id="submit-button" type="submit" class="btn btn-outline-secondary">分析</button>
+
+  <p></p>
+  <hr>
+  <div id="result"></div>
+{% endblock %}
+{% block js %}
+  {% load static %}
+  <script src="{% static 'js/text.js' %}"></script>
+{% endblock %}
